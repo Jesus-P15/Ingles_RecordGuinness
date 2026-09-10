@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Los Récords Guinness de Nuestra Clase</title>
+<title>Our Class Guinness Records</title>
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
 <style>
@@ -121,7 +121,8 @@
   }
   .card.active{
     opacity: 1; pointer-events: auto;
-    animation: flipIn 0.6s cubic-bezier(.2,.8,.2,1) forwards, glowPulse 2.4s ease-in-out 0.65s infinite;
+    animation: flipIn 20s cubic-be
+    zier(.2,.8,.2,1) forwards, glowPulse 2.4s ease-in-out 0.65s infinite;
   }
   @keyframes flipIn{
     0%{ opacity:0; transform: rotateY(-100deg) scale(0.85); }
@@ -205,7 +206,7 @@
   .progress-fill{
     height: 100%; width: 0%; background: var(--crimson); border-radius: 999px;
   }
-  .progress-fill.run{ animation: fillBar 6s linear forwards; }
+  .progress-fill.run{ animation: fillBar 20s linear forwards; }
   @keyframes fillBar{ from{ width:0%; } to{ width:100%; } }
 
   .counter{ text-align:center; margin-top: 8px; font-size: 12.5px; letter-spacing: 0.08em; color: #8a8578; font-weight: 700; }
@@ -236,11 +237,11 @@
 <div class="wrap">
 
   <div class="hero">
-    <span class="badge">DÍA GUINNESS</span>
+    <span class="badge">GUINNESS DAY</span>
     <div class="trophy">🏆</div>
-    <h1 class="title">Los Récords Guinness<br>de Nuestra Clase</h1>
-    <div class="group-name" contenteditable="true" spellcheck="false">Nombre de su grupo</div>
-    <p class="sub">Seis compañeros, seis récords. Navega con las flechas, toca cada resultado para editarlo y sube tu foto.</p>
+    <h1 class="title">Our Class Guinness<br>Records</h1>
+    <div class="group-name" contenteditable="true" spellcheck="false">Your group name</div>
+    <p class="sub">Six classmates, six records. Use the arrows, tap each result to edit it, and upload your photo.</p>
   </div>
 
   <div class="carousel">
@@ -251,10 +252,10 @@
 
       <div class="card" data-i="0">
         <span class="ribbon">RECORD</span>
-        <p class="record-label">CATEGORÍA</p>
-        <h2 class="record-title">El estudiante más alto</h2>
+        <p class="record-label">CATEGORY</p>
+        <h2 class="record-title">The tallest student</h2>
         <div class="row">
-          <label class="photo-box">+ Foto de<br>Santiago<input type="file" accept="image/*" onchange="preview(this)"></label>
+          <label class="photo-box">+ Photo of<br>Santiago<input type="file" accept="image/*" onchange="preview(this)"></label>
           <div class="info">
             <p class="holder">Santiago Steel</p>
             <span class="result" contenteditable="true" spellcheck="false">1.80 m</span>
@@ -262,19 +263,19 @@
         </div>
         <div class="superlative">
           <b>Santiago is the tallest</b> student in our class.
-          <div class="es-note">Santiago es el más alto de la clase.</div>
+          <div class="es-note">The tallest student in the class.</div>
         </div>
       </div>
 
       <div class="card" data-i="1">
         <span class="ribbon">RECORD</span>
-        <p class="record-label">CATEGORÍA</p>
-        <h2 class="record-title">El escritor más rápido en el computador</h2>
+        <p class="record-label">CATEGORY</p>
+        <h2 class="record-title">The fastest typist</h2>
         <div class="row">
-          <label class="photo-box">+ Foto de<br>Jesús<input type="file" accept="image/*" onchange="preview(this)"></label>
+          <label class="photo-box">+ Photo of<br>Jesus<input type="file" accept="image/*" onchange="preview(this)"></label>
           <div class="info">
             <p class="holder">Jesús Peluffo</p>
-            <span class="result" contenteditable="true" spellcheck="false">65 palabras por minuto</span>
+            <span class="result" contenteditable="true" spellcheck="false">65 words per minute</span>
           </div>
         </div>
         <div class="superlative">
@@ -284,70 +285,70 @@
 
       <div class="card" data-i="2">
         <span class="ribbon">RECORD</span>
-        <p class="record-label">CATEGORÍA</p>
-        <h2 class="record-title">El estudiante con más mascotas</h2>
+        <p class="record-label">CATEGORY</p>
+        <h2 class="record-title">The student with the most pets</h2>
         <div class="row">
-          <label class="photo-box">+ Foto de<br>Laura<input type="file" accept="image/*" onchange="preview(this)"></label>
+          <label class="photo-box">+ Photo of<br>Laura<input type="file" accept="image/*" onchange="preview(this)"></label>
           <div class="info">
             <p class="holder">Laura</p>
-            <span class="result" contenteditable="true" spellcheck="false">Laura tiene 3 mascotas</span>
+            <span class="result" contenteditable="true" spellcheck="false">Laura has 3 pets</span>
           </div>
         </div>
         <div class="superlative">
           <b>Laura has the most pets</b> in our class.
-          <div class="es-note">Laura tiene más mascotas que nadie en la clase.</div>
+          <div class="es-note">More pets than anyone else in the class.</div>
         </div>
       </div>
 
       <div class="card" data-i="3">
         <span class="ribbon">RECORD</span>
-        <p class="record-label">CATEGORÍA</p>
-        <h2 class="record-title">El estudiante más divertido</h2>
+        <p class="record-label">CATEGORY</p>
+        <h2 class="record-title">The funniest student</h2>
         <div class="row">
-          <label class="photo-box">+ Foto de<br>Samuel<input type="file" accept="image/*" onchange="preview(this)"></label>
+          <label class="photo-box">+ Photo of<br>Samuel<input type="file" accept="image/*" onchange="preview(this)"></label>
           <div class="info">
             <p class="holder">Samuel</p>
-            <span class="result" contenteditable="true" spellcheck="false">Ganador por votación del grupo</span>
+            <span class="result" contenteditable="true" spellcheck="false">Winner by group vote</span>
           </div>
         </div>
         <div class="superlative">
           <b>Samuel is the funniest</b> student in our class.
-          <div class="es-note">Samuel es el más divertido de la clase.</div>
+          <div class="es-note">The funniest student in the class.</div>
         </div>
       </div>
 
       <div class="card" data-i="4">
         <span class="ribbon">RECORD</span>
-        <p class="record-label">CATEGORÍA</p>
-        <h2 class="record-title">El mejor cantante</h2>
+        <p class="record-label">CATEGORY</p>
+        <h2 class="record-title">The best singer</h2>
         <div class="row">
-          <label class="photo-box">+ Foto de<br>Leidy<input type="file" accept="image/*" onchange="preview(this)"></label>
+          <label class="photo-box">+ Photo of<br>Leidy<input type="file" accept="image/*" onchange="preview(this)"></label>
           <div class="info">
             <p class="holder">Leidy</p>
-            <span class="result" contenteditable="true" spellcheck="false">Canción: toca para escribir el título</span>
-            <div><span class="live-tag">SE PRESENTA EN VIVO</span></div>
+            <span class="result" contenteditable="true" spellcheck="false">Song: tap to enter the title</span>
+            <div><span class="live-tag">LIVE PERFORMANCE</span></div>
           </div>
         </div>
         <div class="superlative">
           <b>Leidy is the best singer</b> in our class.
-          <div class="es-note">Reto en vivo el Día Guinness.</div>
+          <div class="es-note">Live challenge on Guinness Day.</div>
         </div>
       </div>
 
       <div class="card" data-i="5">
         <span class="ribbon">RECORD</span>
-        <p class="record-label">CATEGORÍA</p>
-        <h2 class="record-title">El estudiante más organizado</h2>
+        <p class="record-label">CATEGORY</p>
+        <h2 class="record-title">The most organized student</h2>
         <div class="row">
-          <label class="photo-box">+ Foto de<br>Valentina<input type="file" accept="image/*" onchange="preview(this)"></label>
+          <label class="photo-box">+ Photo of<br>Valentina<input type="file" accept="image/*" onchange="preview(this)"></label>
           <div class="info">
             <p class="holder">Valentina</p>
-            <span class="result" contenteditable="true" spellcheck="false">Evidencia: agenda / cuaderno organizado</span>
+            <span class="result" contenteditable="true" spellcheck="false">Evidence: organized planner / notebook</span>
           </div>
         </div>
         <div class="superlative">
           <b>Valentina is the most organized</b> student in our class.
-          <div class="es-note">Valentina es la más organizada de la clase.</div>
+          <div class="es-note">The most organized student in the class.</div>
         </div>
       </div>
 
@@ -359,8 +360,8 @@
   </div>
 
   <div class="footer">
-    <p class="phrase">"Misma clase. Diferentes récords. ¡Personas increíbles!"</p>
-    <button class="print-btn" onclick="window.print()">Imprimir / Guardar como PDF</button>
+    <p class="phrase">"Same class. Different records. Amazing people!"</p>
+    <button class="print-btn" onclick="window.print()">Print / Save as PDF</button>
   </div>
 
 </div>
@@ -415,7 +416,7 @@
 
   function resetAutoplay(){
     clearInterval(timer);
-    timer = setInterval(() => go(1), 6000);
+    timer = setInterval(() => go(1), 20000);
   }
 
   function preview(input){
