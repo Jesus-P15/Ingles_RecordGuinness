@@ -148,6 +148,14 @@
     text-align:center; font-size: 11px; color: var(--gold); font-weight: 700;
     cursor: pointer; overflow: hidden; position: relative; background: var(--paper-dark);
   }
+  .record-art{ width:100%; height:100%; display:block; }
+  .record-art .line{ stroke:var(--ink); stroke-width:2.2; stroke-linecap:round; stroke-linejoin:round; }
+  .record-art .accent{ fill:var(--crimson); }
+  .record-art .gold{ fill:var(--gold); }
+  .record-art .teal{ fill:var(--teal); }
+  .photo-caption{ position:absolute; left:5px; right:5px; bottom:4px; padding:3px 2px;
+    background:rgba(247,242,231,0.88); color:var(--crimson-dark); font-size:9px;
+    letter-spacing:.04em; line-height:1; text-transform:uppercase; }
   .photo-box img{ width:100%; height:100%; object-fit: cover; }
   .photo-box input[type=file]{ position:absolute; inset:0; opacity:0; cursor:pointer; }
 
@@ -254,7 +262,12 @@
         <p class="record-label">CATEGORY</p>
         <h2 class="record-title">The tallest student</h2>
         <div class="row">
-          <label class="photo-box">+ Photo of<br>Santiago<input type="file" accept="image/*" onchange="preview(this)"></label>
+          <label class="photo-box">
+            <svg class="record-art" viewBox="0 0 108 108" role="img" aria-label="Illustration of the tallest student">
+              <rect width="108" height="108" fill="#EEE6D3"/><path class="gold" d="M78 15h5v78h-5zM73 16h15v5H73zm0 13h9v2h-9zm0 15h15v2H73zm0 15h9v2h-9zm0 15h15v2H73z"/>
+              <circle class="accent" cx="45" cy="29" r="10"/><path class="teal" d="M34 41c3-5 19-5 22 0l7 36H28z"/><path class="line" fill="none" d="M40 77l-3 18m15-18 4 18M34 51l-10 17m31-17 12 12M38 25c3-7 15-8 19 0"/>
+              <path class="gold" d="M28 96h38v4H28z"/>
+            </svg><span class="photo-caption">Santiago · 1.80 m</span><input type="file" accept="image/*" onchange="preview(this)"></label>
           <div class="info">
             <p class="holder">Santiago Steel</p>
             <span class="result" contenteditable="true" spellcheck="false">1.80 m</span>
@@ -271,7 +284,8 @@
         <p class="record-label">CATEGORY</p>
         <h2 class="record-title">The fastest typist</h2>
         <div class="row">
-          <label class="photo-box">+ Photo of<br>Jesus<input type="file" accept="image/*" onchange="preview(this)"></label>
+          <label class="photo-box">
+            <img class="record-art" src="imagenes/jesus.jpg" alt="Jesus, the fastest typist"><span class="photo-caption">Jesus · 65 WPM</span><input type="file" accept="image/*" onchange="preview(this)"></label>
           <div class="info">
             <p class="holder">Jesús Peluffo</p>
             <span class="result" contenteditable="true" spellcheck="false">65 words per minute</span>
@@ -287,7 +301,8 @@
         <p class="record-label">CATEGORY</p>
         <h2 class="record-title">The student with the most pets</h2>
         <div class="row">
-          <label class="photo-box">+ Photo of<br>Laura<input type="file" accept="image/*" onchange="preview(this)"></label>
+          <label class="photo-box">
+            <img class="record-art" src="imagenes/laura.jpeg" alt="Laura, the student with the most pets"><span class="photo-caption">Laura · 3 pets</span><input type="file" accept="image/*" onchange="preview(this)"></label>
           <div class="info">
             <p class="holder">Laura</p>
             <span class="result" contenteditable="true" spellcheck="false">Laura has 3 pets</span>
@@ -304,7 +319,8 @@
         <p class="record-label">CATEGORY</p>
         <h2 class="record-title">The funniest student</h2>
         <div class="row">
-          <label class="photo-box">+ Photo of<br>Samuel<input type="file" accept="image/*" onchange="preview(this)"></label>
+          <label class="photo-box">
+            <img class="record-art" src="imagenes/samuel.jpg" alt="Samuel, the funniest student"><span class="photo-caption">Samuel · funniest</span><input type="file" accept="image/*" onchange="preview(this)"></label>
           <div class="info">
             <p class="holder">Samuel</p>
             <span class="result" contenteditable="true" spellcheck="false">Winner by group vote</span>
@@ -321,7 +337,8 @@
         <p class="record-label">CATEGORY</p>
         <h2 class="record-title">The best singer</h2>
         <div class="row">
-          <label class="photo-box">+ Photo of<br>Leidy<input type="file" accept="image/*" onchange="preview(this)"></label>
+          <label class="photo-box">
+            <img class="record-art" src="imagenes/leidy.jpeg" alt="Leidy, the best singer"><span class="photo-caption">Leidy · live singer</span><input type="file" accept="image/*" onchange="preview(this)"></label>
           <div class="info">
             <p class="holder">Leidy</p>
             <span class="result" contenteditable="true" spellcheck="false">Song: tap to enter the title</span>
@@ -339,7 +356,8 @@
         <p class="record-label">CATEGORY</p>
         <h2 class="record-title">The most organized student</h2>
         <div class="row">
-          <label class="photo-box">+ Photo of<br>Valentina<input type="file" accept="image/*" onchange="preview(this)"></label>
+          <label class="photo-box">
+            <img class="record-art" src="imagenes/valentina.jpeg" alt="Valentina, the most organized student"><span class="photo-caption">Valentina · organized</span><input type="file" accept="image/*" onchange="preview(this)"></label>
           <div class="info">
             <p class="holder">Valentina</p>
             <span class="result" contenteditable="true" spellcheck="false">Evidence: organized planner / notebook</span>
