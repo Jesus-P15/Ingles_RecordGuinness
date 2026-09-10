@@ -1,0 +1,498 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Los Récords Guinness de Nuestra Clase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Karla:ital,wght@0,400;0,500;0,700;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper: #F7F2E7;
+    --paper-dark: #EEE6D3;
+    --ink: #1C1A16;
+    --crimson: #B3122B;
+    --crimson-dark: #8A0E21;
+    --gold: #C89B3C;
+    --teal: #143D3D;
+  }
+  *{ box-sizing: border-box; }
+  html,body{ height: 100%; }
+  body{
+    margin:0;
+    background: var(--paper);
+    color: var(--ink);
+    font-family: 'Karla', sans-serif;
+    -webkit-font-smoothing: antialiased;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  /* ---------- ANIMATED AURORA BACKGROUND ---------- */
+  .aurora{
+    position: fixed; inset: -10%; z-index: 0; pointer-events: none;
+    filter: blur(60px); opacity: 0.55;
+  }
+  .aurora span{
+    position: absolute; border-radius: 50%;
+    animation: drift 16s ease-in-out infinite;
+  }
+  .aurora span:nth-child(1){ width: 420px; height: 420px; background: var(--gold); top: 5%; left: 8%; animation-delay: 0s; }
+  .aurora span:nth-child(2){ width: 380px; height: 380px; background: var(--crimson); top: 55%; left: 70%; animation-delay: -5s; }
+  .aurora span:nth-child(3){ width: 320px; height: 320px; background: var(--teal); top: 70%; left: 15%; animation-delay: -10s; opacity: 0.6; }
+  @keyframes drift{
+    0%,100%{ transform: translate(0,0) scale(1); }
+    33%{ transform: translate(40px,-30px) scale(1.15); }
+    66%{ transform: translate(-30px,25px) scale(0.9); }
+  }
+
+  .floaties{ position: fixed; inset:0; z-index: 0; pointer-events:none; overflow:hidden; }
+  .floaties span{
+    position:absolute; bottom: -10%; font-size: 22px; opacity: 0;
+    animation: floatUp 12s linear infinite;
+  }
+  @keyframes floatUp{
+    0%{ transform: translateY(0) rotate(0deg); opacity:0; }
+    10%{ opacity:0.5; }
+    90%{ opacity:0.35; }
+    100%{ transform: translateY(-115vh) rotate(360deg); opacity:0; }
+  }
+
+  #confetti-canvas{ position: fixed; inset:0; z-index: 50; pointer-events: none; }
+
+  .wrap{ position: relative; z-index: 2; max-width: 1000px; margin: 0 auto; padding: 56px 24px 80px; }
+
+  /* ---------- HERO ---------- */
+  .hero{ text-align:center; margin-bottom: 40px; }
+  .badge{
+    display:inline-block; font-size: 13px; letter-spacing: 0.14em;
+    color: var(--crimson-dark); border: 1.5px solid var(--crimson-dark);
+    border-radius: 999px; padding: 6px 16px; margin-bottom: 18px; font-weight: 700;
+    background: rgba(255,255,255,0.6);
+  }
+  .trophy{
+    font-size: 46px; display:inline-block; margin-bottom: 4px;
+    animation: swing 2.2s ease-in-out infinite;
+    transform-origin: 50% 0%;
+    filter: drop-shadow(0 0 0px rgba(200,155,60,0));
+    animation-name: swing, glowIcon;
+    animation-duration: 2.2s, 2.2s;
+    animation-iteration-count: infinite, infinite;
+    animation-timing-function: ease-in-out, ease-in-out;
+  }
+  @keyframes swing{
+    0%,100%{ transform: rotate(-10deg) scale(1); }
+    50%{ transform: rotate(10deg) scale(1.08); }
+  }
+  @keyframes glowIcon{
+    0%,100%{ filter: drop-shadow(0 0 2px rgba(200,155,60,0.3)); }
+    50%{ filter: drop-shadow(0 0 16px rgba(200,155,60,0.85)); }
+  }
+  h1.title{
+    font-family: 'Bebas Neue', sans-serif; font-weight: 400;
+    font-size: clamp(40px, 7.5vw, 78px); line-height: 0.95;
+    letter-spacing: 0.01em; margin: 6px 0 14px;
+    background: linear-gradient(90deg, var(--crimson), var(--gold), var(--crimson-dark), var(--gold), var(--crimson));
+    background-size: 300% auto;
+    -webkit-background-clip: text; background-clip: text; color: transparent;
+    animation: shimmer 5s linear infinite;
+  }
+  @keyframes shimmer{ to{ background-position: -300% center; } }
+
+  .group-name{
+    font-family: 'Karla', sans-serif; font-size: 20px; font-weight: 700;
+    color: var(--teal); outline: none; border-bottom: 2px dashed var(--gold);
+    padding-bottom: 4px; display:inline-block; min-width: 220px;
+  }
+  .group-name:focus{ background: rgba(200,155,60,0.08); }
+  .hero p.sub{ max-width: 480px; margin: 16px auto 0; color: #55524a; font-size: 15px; line-height: 1.5; }
+
+  /* ---------- CAROUSEL ---------- */
+  .carousel{ position: relative; max-width: 620px; margin: 0 auto; }
+  .stage{ position: relative; min-height: 440px; perspective: 1400px; }
+  .card{
+    position: absolute; inset: 0;
+    background: white; border: 2px solid var(--ink); border-radius: 8px;
+    padding: 30px 28px 26px;
+    box-shadow: 8px 8px 0 rgba(28,26,22,0.9);
+    opacity: 0; pointer-events: none;
+    transform: rotateY(-100deg) scale(0.85);
+    transform-style: preserve-3d;
+  }
+  .card.active{
+    opacity: 1; pointer-events: auto;
+    animation: flipIn 0.6s cubic-bezier(.2,.8,.2,1) forwards, glowPulse 2.4s ease-in-out 0.65s infinite;
+  }
+  @keyframes flipIn{
+    0%{ opacity:0; transform: rotateY(-100deg) scale(0.85); }
+    55%{ opacity:1; }
+    100%{ opacity:1; transform: rotateY(0deg) scale(1); }
+  }
+  @keyframes glowPulse{
+    0%,100%{ box-shadow: 8px 8px 0 rgba(28,26,22,0.9), 0 0 0px rgba(200,155,60,0); }
+    50%{ box-shadow: 8px 8px 0 rgba(28,26,22,0.9), 0 0 26px 3px rgba(200,155,60,0.6); }
+  }
+
+  .ribbon{
+    font-family:'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 0.12em;
+    background: var(--crimson); color: white; display:inline-block;
+    padding: 5px 14px; border-radius: 3px; margin-bottom: 16px;
+  }
+  .record-label{ font-size: 11px; letter-spacing: 0.1em; color: #8a8578; font-weight: 700; margin: 0 0 2px; }
+  .record-title{ font-family:'Bebas Neue', sans-serif; font-size: 30px; color: var(--ink); margin: 0 0 20px; line-height: 1.05; }
+
+  .row{ display:flex; gap: 18px; align-items:flex-start; }
+  .photo-box{
+    width: 108px; height: 108px; flex: none; border: 2px dashed var(--gold);
+    border-radius: 8px; display:flex; align-items:center; justify-content:center;
+    text-align:center; font-size: 11px; color: var(--gold); font-weight: 700;
+    cursor: pointer; overflow: hidden; position: relative; background: var(--paper-dark);
+  }
+  .photo-box img{ width:100%; height:100%; object-fit: cover; }
+  .photo-box input[type=file]{ position:absolute; inset:0; opacity:0; cursor:pointer; }
+
+  .info{ flex: 1; min-width: 0; padding-top: 4px; }
+  .holder{ font-size: 19px; font-weight: 700; color: var(--teal); margin: 0 0 6px; }
+  .result{
+    font-size: 14.5px; color: var(--ink); outline: none;
+    border-bottom: 1.5px dotted #c9c3b4; display:inline-block; padding-bottom: 1px;
+  }
+  .result:focus{ background: rgba(200,155,60,0.1); }
+
+  .superlative{
+    margin-top: 20px; padding-top: 16px; border-top: 1px solid #ece5d3;
+    font-size: 15px; font-style: italic; color: #3a382f;
+  }
+  .superlative b{ color: var(--crimson-dark); font-style: normal; }
+  .es-note{ font-size: 12px; color: #9a9686; margin-top: 4px; }
+  .live-tag{
+    display:inline-block; margin-top: 10px; font-size: 11px; font-weight: 700;
+    letter-spacing: 0.08em; color: var(--crimson-dark); background: rgba(179,18,43,0.08);
+    padding: 3px 9px; border-radius: 4px;
+  }
+
+  /* ---------- CONTROLS ---------- */
+  .nav-btn{
+    position:absolute; top:50%; transform: translateY(-50%);
+    width: 46px; height: 46px; border-radius: 50%; border: 2px solid var(--ink);
+    background: var(--paper); color: var(--ink); font-size: 18px; font-weight:700;
+    cursor:pointer; display:flex; align-items:center; justify-content:center;
+    transition: transform 0.15s, background 0.15s;
+    box-shadow: 3px 3px 0 rgba(28,26,22,0.9);
+    z-index: 3;
+  }
+  .nav-btn:hover{ background: var(--crimson); color: white; transform: translateY(-50%) scale(1.08); }
+  .nav-btn:active{ transform: translateY(-50%) scale(0.92); }
+  .nav-prev{ left: -58px; }
+  .nav-next{ right: -58px; }
+  @media (max-width: 760px){
+    .nav-prev{ left: -6px; } .nav-next{ right: -6px; }
+    .nav-btn{ width: 38px; height: 38px; }
+  }
+
+  .dots{ display:flex; justify-content:center; gap: 10px; margin-top: 22px; }
+  .dot{
+    width: 11px; height: 11px; border-radius: 50%; border: 2px solid var(--ink);
+    background: transparent; cursor: pointer; padding: 0;
+    transition: background 0.2s, transform 0.2s;
+  }
+  .dot.active{ background: var(--crimson); transform: scale(1.25); }
+
+  .progress-track{
+    width: 160px; height: 4px; background: rgba(28,26,22,0.12); border-radius: 999px;
+    margin: 12px auto 0; overflow: hidden;
+  }
+  .progress-fill{
+    height: 100%; width: 0%; background: var(--crimson); border-radius: 999px;
+  }
+  .progress-fill.run{ animation: fillBar 6s linear forwards; }
+  @keyframes fillBar{ from{ width:0%; } to{ width:100%; } }
+
+  .counter{ text-align:center; margin-top: 8px; font-size: 12.5px; letter-spacing: 0.08em; color: #8a8578; font-weight: 700; }
+
+  /* ---------- FOOTER ---------- */
+  .footer{ text-align:center; margin-top: 56px; }
+  .footer .phrase{ font-family:'Bebas Neue', sans-serif; font-size: 22px; color: var(--teal); letter-spacing: 0.02em; }
+  .print-btn{
+    margin-top: 20px; background: var(--ink); color: var(--paper); border: none;
+    font-family: 'Karla', sans-serif; font-weight: 700; font-size: 14px;
+    padding: 12px 26px; border-radius: 999px; cursor: pointer;
+  }
+  .print-btn:hover{ background: var(--crimson-dark); }
+
+  @media print{
+    .nav-btn, .dots, .counter, .print-btn, .aurora, .floaties, #confetti-canvas, .progress-track{ display:none; }
+    .card{ position: static; opacity:1 !important; transform:none !important; box-shadow:none; margin-bottom: 24px; animation:none !important; }
+    body{ background: white; }
+  }
+</style>
+</head>
+<body>
+
+<div class="aurora"><span></span><span></span><span></span></div>
+<div class="floaties" id="floaties"></div>
+<canvas id="confetti-canvas"></canvas>
+
+<div class="wrap">
+
+  <div class="hero">
+    <span class="badge">DÍA GUINNESS</span>
+    <div class="trophy">🏆</div>
+    <h1 class="title">Los Récords Guinness<br>de Nuestra Clase</h1>
+    <div class="group-name" contenteditable="true" spellcheck="false">Nombre de su grupo</div>
+    <p class="sub">Seis compañeros, seis récords. Navega con las flechas, toca cada resultado para editarlo y sube tu foto.</p>
+  </div>
+
+  <div class="carousel">
+    <button class="nav-btn nav-prev" onclick="go(-1)">‹</button>
+    <button class="nav-btn nav-next" onclick="go(1)">›</button>
+
+    <div class="stage" id="stage">
+
+      <div class="card" data-i="0">
+        <span class="ribbon">RECORD</span>
+        <p class="record-label">CATEGORÍA</p>
+        <h2 class="record-title">El estudiante más alto</h2>
+        <div class="row">
+          <label class="photo-box">+ Foto de<br>Santiago<input type="file" accept="image/*" onchange="preview(this)"></label>
+          <div class="info">
+            <p class="holder">Santiago Steel</p>
+            <span class="result" contenteditable="true" spellcheck="false">1.80 m</span>
+          </div>
+        </div>
+        <div class="superlative">
+          <b>Santiago is the tallest</b> student in our class.
+          <div class="es-note">Santiago es el más alto de la clase.</div>
+        </div>
+      </div>
+
+      <div class="card" data-i="1">
+        <span class="ribbon">RECORD</span>
+        <p class="record-label">CATEGORÍA</p>
+        <h2 class="record-title">El escritor más rápido en el computador</h2>
+        <div class="row">
+          <label class="photo-box">+ Foto de<br>Jesús<input type="file" accept="image/*" onchange="preview(this)"></label>
+          <div class="info">
+            <p class="holder">Jesús Peluffo</p>
+            <span class="result" contenteditable="true" spellcheck="false">65 palabras por minuto</span>
+          </div>
+        </div>
+        <div class="superlative">
+          <b>Jesús is the fastest typist</b> in our class.
+          <div class="es-note">Ajusten el número real de palabras por minuto.</div>
+        </div>
+      </div>
+
+      <div class="card" data-i="2">
+        <span class="ribbon">RECORD</span>
+        <p class="record-label">CATEGORÍA</p>
+        <h2 class="record-title">El estudiante con más mascotas</h2>
+        <div class="row">
+          <label class="photo-box">+ Foto de<br>Laura<input type="file" accept="image/*" onchange="preview(this)"></label>
+          <div class="info">
+            <p class="holder">Laura</p>
+            <span class="result" contenteditable="true" spellcheck="false">Toca aquí para escribir el número de mascotas</span>
+          </div>
+        </div>
+        <div class="superlative">
+          <b>Laura has the most pets</b> in our class.
+          <div class="es-note">Laura tiene más mascotas que nadie en la clase.</div>
+        </div>
+      </div>
+
+      <div class="card" data-i="3">
+        <span class="ribbon">RECORD</span>
+        <p class="record-label">CATEGORÍA</p>
+        <h2 class="record-title">El estudiante más divertido</h2>
+        <div class="row">
+          <label class="photo-box">+ Foto de<br>Samuel<input type="file" accept="image/*" onchange="preview(this)"></label>
+          <div class="info">
+            <p class="holder">Samuel</p>
+            <span class="result" contenteditable="true" spellcheck="false">Ganador por votación del grupo</span>
+          </div>
+        </div>
+        <div class="superlative">
+          <b>Samuel is the funniest</b> student in our class.
+          <div class="es-note">Samuel es el más divertido de la clase.</div>
+        </div>
+      </div>
+
+      <div class="card" data-i="4">
+        <span class="ribbon">RECORD</span>
+        <p class="record-label">CATEGORÍA</p>
+        <h2 class="record-title">El mejor cantante</h2>
+        <div class="row">
+          <label class="photo-box">+ Foto de<br>Leidy<input type="file" accept="image/*" onchange="preview(this)"></label>
+          <div class="info">
+            <p class="holder">Leidy</p>
+            <span class="result" contenteditable="true" spellcheck="false">Canción: toca para escribir el título</span>
+            <div><span class="live-tag">SE PRESENTA EN VIVO</span></div>
+          </div>
+        </div>
+        <div class="superlative">
+          <b>Leidy is the best singer</b> in our class.
+          <div class="es-note">Reto en vivo el Día Guinness.</div>
+        </div>
+      </div>
+
+      <div class="card" data-i="5">
+        <span class="ribbon">RECORD</span>
+        <p class="record-label">CATEGORÍA</p>
+        <h2 class="record-title">El estudiante más organizado</h2>
+        <div class="row">
+          <label class="photo-box">+ Foto de<br>Valentina<input type="file" accept="image/*" onchange="preview(this)"></label>
+          <div class="info">
+            <p class="holder">Valentina</p>
+            <span class="result" contenteditable="true" spellcheck="false">Evidencia: agenda / cuaderno organizado</span>
+          </div>
+        </div>
+        <div class="superlative">
+          <b>Valentina is the most organized</b> student in our class.
+          <div class="es-note">Valentina es la más organizada de la clase.</div>
+        </div>
+      </div>
+
+    </div>
+
+    <div class="dots" id="dots"></div>
+    <div class="progress-track"><div class="progress-fill" id="progressFill"></div></div>
+    <div class="counter" id="counter">1 / 6</div>
+  </div>
+
+  <div class="footer">
+    <p class="phrase">"Misma clase. Diferentes récords. ¡Personas increíbles!"</p>
+    <button class="print-btn" onclick="window.print()">Imprimir / Guardar como PDF</button>
+  </div>
+
+</div>
+
+<script>
+  const cards = Array.from(document.querySelectorAll('.card'));
+  const dotsWrap = document.getElementById('dots');
+  const counter = document.getElementById('counter');
+  const stage = document.getElementById('stage');
+  const progressFill = document.getElementById('progressFill');
+  let current = 0;
+  let timer = null;
+
+  cards.forEach((c, i) => {
+    const d = document.createElement('button');
+    d.className = 'dot';
+    d.onclick = () => showSlide(i);
+    dotsWrap.appendChild(d);
+  });
+  const dots = Array.from(dotsWrap.children);
+
+  // floating background icons
+  const floatIcons = ['🏆','⭐','🎉','🥇','✨'];
+  const floatWrap = document.getElementById('floaties');
+  for(let i=0;i<10;i++){
+    const s = document.createElement('span');
+    s.textContent = floatIcons[i % floatIcons.length];
+    s.style.left = (Math.random()*100) + '%';
+    s.style.animationDelay = (Math.random()*12) + 's';
+    s.style.animationDuration = (10 + Math.random()*8) + 's';
+    s.style.fontSize = (16 + Math.random()*18) + 'px';
+    floatWrap.appendChild(s);
+  }
+
+  function showSlide(i){
+    current = (i + cards.length) % cards.length;
+    cards.forEach((c, idx) => {
+      c.classList.remove('active');
+      void c.offsetWidth;
+      if(idx === current){ c.classList.add('active'); }
+    });
+    dots.forEach((d, idx) => d.classList.toggle('active', idx === current));
+    counter.textContent = (current + 1) + ' / ' + cards.length;
+    progressFill.classList.remove('run');
+    void progressFill.offsetWidth;
+    progressFill.classList.add('run');
+    confettiBurst();
+    resetAutoplay();
+  }
+
+  function go(dir){ showSlide(current + dir); }
+
+  function resetAutoplay(){
+    clearInterval(timer);
+    timer = setInterval(() => go(1), 6000);
+  }
+
+  function preview(input){
+    if(!input.files || !input.files[0]) return;
+    const reader = new FileReader();
+    reader.onload = function(e){
+      const box = input.parentElement;
+      box.innerHTML = '<img src="' + e.target.result + '" alt="foto">';
+    };
+    reader.readAsDataURL(input.files[0]);
+  }
+
+  /* ---------- CONFETTI ---------- */
+  const canvas = document.getElementById('confetti-canvas');
+  const ctx = canvas.getContext('2d');
+  function resizeCanvas(){ canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+  resizeCanvas();
+  window.addEventListener('resize', resizeCanvas);
+
+  const colors = ['#B3122B','#C89B3C','#143D3D','#E8C468','#D9455F'];
+  let particles = [];
+  let confettiRAF = null;
+  let confettiStart = 0;
+
+  function confettiBurst(){
+    const stageRect = stage.getBoundingClientRect();
+    const cx = stageRect.left + stageRect.width/2;
+    const cy = stageRect.top + 20;
+    particles = [];
+    for(let i=0;i<70;i++){
+      particles.push({
+        x: cx + (Math.random()-0.5)*stageRect.width*0.8,
+        y: cy - Math.random()*40,
+        vx: (Math.random()-0.5)*4,
+        vy: 2 + Math.random()*3,
+        rot: Math.random()*360,
+        rotSpeed: (Math.random()-0.5)*10,
+        size: 5 + Math.random()*5,
+        color: colors[Math.floor(Math.random()*colors.length)],
+        shape: Math.random() > 0.5 ? 'rect' : 'circle'
+      });
+    }
+    confettiStart = performance.now();
+    if(confettiRAF) cancelAnimationFrame(confettiRAF);
+    confettiRAF = requestAnimationFrame(animateConfetti);
+  }
+
+  function animateConfetti(t){
+    ctx.clearRect(0,0,canvas.width,canvas.height);
+    const elapsed = t - confettiStart;
+    particles.forEach(p => {
+      p.vy += 0.06;
+      p.x += p.vx;
+      p.y += p.vy;
+      p.rot += p.rotSpeed;
+      ctx.save();
+      ctx.translate(p.x, p.y);
+      ctx.rotate(p.rot * Math.PI/180);
+      ctx.fillStyle = p.color;
+      if(p.shape === 'rect'){
+        ctx.fillRect(-p.size/2, -p.size/3, p.size, p.size*0.66);
+      } else {
+        ctx.beginPath();
+        ctx.arc(0,0,p.size/2,0,Math.PI*2);
+        ctx.fill();
+      }
+      ctx.restore();
+    });
+    if(elapsed < 1700){
+      confettiRAF = requestAnimationFrame(animateConfetti);
+    } else {
+      ctx.clearRect(0,0,canvas.width,canvas.height);
+    }
+  }
+
+  showSlide(0);
+</script>
+</body>
+</html>
