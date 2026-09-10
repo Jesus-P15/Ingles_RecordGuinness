@@ -121,8 +121,7 @@
   }
   .card.active{
     opacity: 1; pointer-events: auto;
-    animation: flipIn 20s cubic-be
-    zier(.2,.8,.2,1) forwards, glowPulse 2.4s ease-in-out 0.65s infinite;
+    animation: flipIn 20s cubic-bezier(.2,.8,.2,1) forwards, glowPulse 2.4s ease-in-out 0.65s infinite;
   }
   @keyframes flipIn{
     0%{ opacity:0; transform: rotateY(-100deg) scale(0.85); }
@@ -206,7 +205,7 @@
   .progress-fill{
     height: 100%; width: 0%; background: var(--crimson); border-radius: 999px;
   }
-  .progress-fill.run{ animation: fillBar 0.6s linear forwards; }
+  .progress-fill.run{ animation: fillBar 20s linear forwards; }
   @keyframes fillBar{ from{ width:0%; } to{ width:100%; } }
 
   .counter{ text-align:center; margin-top: 8px; font-size: 12.5px; letter-spacing: 0.08em; color: #8a8578; font-weight: 700; }
